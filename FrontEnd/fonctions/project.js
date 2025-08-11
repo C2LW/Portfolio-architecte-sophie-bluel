@@ -1,18 +1,17 @@
 // Fonction de Récupération des projets
-async function getData() {
+async function getWorksData() {
     const urlWorks = "http://localhost:5678/api/works";
 
     try {
-        const res = await fetch(urlWorks);
-        if (!res.ok) throw new Error(`Response status: ${res.status}`);
+        const result = await fetch(urlWorks);
+        if (!result.ok) throw new Error(`Response status: ${result.status}`);
         
-        const result = await res.json(); 
-        console.log(result);
-        return result;
+        const project = await result.json(); 
+        console.log(project);
+        return project;
         
-    } catch (err) {
-        console.error("Erreur API:", err);
-        return []; // évite de crasher en aval
+    } catch (error) {
+        console.error("Erreur API:", error);
     }
 }
 
@@ -29,7 +28,7 @@ function createGallery(projects) {
         figure.dataset.id = value.id;
 
         const img = document.createElement("img");
-        img.src = value.imageUrl;          // <- clé correcte
+        img.src = value.imageUrl;
         img.alt = value.title || "";
 
         const caption = document.createElement("figcaption");
@@ -45,6 +44,6 @@ function createGallery(projects) {
 
 // Initialisation
 (async function init() {
-    const data = await getData();   // <- on attend la Promise
+    const data = await getWorksData();   // <- on attend la Promise
     createGallery(data);
 })();
