@@ -87,6 +87,37 @@ function getForm(credentials) {
 }
 
 
+/**
+ * Fonction POST pour accès token authentification
+ * @param {*} credentials 
+ * @returns {JSON}
+ */
+async function postAuthApi(credentials) {
+    const url = "http://localhost:5678/api/users/login";
+
+    try {
+        const body = JSON.stringify(credentials);
+        const request = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: body
+        }
+        const response = await fetch(url, request);
+
+        if (!response.ok) {
+            throw new Error("Echec d'accès au serveur de API : ${response.status}");
+        }
+
+        const responseJSON = await response.json();
+        return responseJSON;
+
+    } catch (error) {
+        console.error("Erreur API postAuthApi :", error);
+        return null;
+
+    }
+}
+
 
 /**
  * Fonction principale de gestion de l'authentification
@@ -103,7 +134,7 @@ function auth() {
 
     const credentials = { email: "", password: "" };
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         let authCredentials = getForm(credentials);
@@ -117,6 +148,20 @@ function auth() {
         console.log("Email OK:", authCredentials.email);
         console.log("Password OK (masqué):", "*".repeat(authCredentials.password.length));
 
+        try {
+            const r = await postAuthApi(credentials);
+
+            if (r.token) {
+                localStorage.setItem("token", r.token);
+                console.log("Token saved !");
+                window.location.href = "index.html";
+            } else {
+                throw new Error("Identifiants incorrect !")
+            }
+
+        } catch (error) {
+            postMessageError(error);
+        }
     });
 };
 
