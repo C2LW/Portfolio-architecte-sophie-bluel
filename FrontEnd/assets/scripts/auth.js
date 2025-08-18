@@ -42,7 +42,7 @@ function postMessageError(message) {
     if (!spanErreurMessage) {
         let zone = document.getElementById("login-form");
         spanErreurMessage = document.createElement("span");
-        spanErreurMessage.id = "erreurMessage";
+        spanErreurMessage.id = "erreur-message";
 
         zone.appendChild(spanErreurMessage);
     }
@@ -81,7 +81,7 @@ function getForm(credentials) {
         return credentials;
 
     } catch (erreur) {
-        postMessageError(erreur.message || "Une erreur est survenue."); // A VOIR AVEC MENTOR EXPLICATION DE CE TYPE DE CODE
+        postMessageError(erreur.message || "Une erreur est survenue.");
         return undefined;
     }
 }
@@ -105,14 +105,21 @@ async function postAuthApi(credentials) {
         const response = await fetch(url, request);
 
         if (!response.ok) {
-            throw new Error("Echec d'accès au serveur de API : ${response.status}");
+            if (response.status === 404) {
+                throw new Error("Utilisateurs non trouvé : ${response.status} ");
+                console.log(response.status);
+            } else if (response.status === 401) {
+                throw new Error("Utilisateur non autorisé : ${response.status}");
+            } else {
+                throw new Error("Echec d'accès au serveur de API : ${response.status}");
+            }
         }
 
         const responseJSON = await response.json();
         return responseJSON;
 
     } catch (error) {
-        console.error("Erreur API postAuthApi :", error);
+        console.error("Erreur API postAuthApi :", error.message);
         return null;
 
     }
@@ -151,7 +158,7 @@ function auth() {
         try {
             const r = await postAuthApi(credentials);
 
-            if (r.token) {
+            if (r && r.token) {
                 localStorage.setItem("token", r.token);
                 console.log("Token saved !");
                 window.location.href = "index.html";
@@ -160,12 +167,10 @@ function auth() {
             }
 
         } catch (error) {
-            postMessageError(error);
+            postMessageError(error.message);
         }
     });
 };
-
-
 
 
 // Init script
