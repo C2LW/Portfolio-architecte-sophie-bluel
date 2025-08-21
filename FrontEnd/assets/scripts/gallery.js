@@ -1,22 +1,10 @@
-// Fonction de Récupération des projets
-async function getWorksData() {
-    const urlWorks = "http://localhost:5678/api/works";
 
-    try {
-        const result = await fetch(urlWorks);
-        if (!result.ok) throw new Error(`Response status: ${result.status}`);
-
-        const project = await result.json();
-        console.log(project);
-        return project;
-
-    } catch (error) {
-        console.error("Erreur API:", error);
-    }
-}
-
-// Fonction de récupération des catégories depuis les données "works"
-function getCategoriesFromData(works) {
+/**
+ * Function to get categories from works
+ * @param {*} works 
+ * @returns 
+ */
+export function getCatsFromData(works) {
     const categories = []; // Tableau final { id: XX, name: XXXX }
 
     // Boucle sur tous les projets
@@ -49,15 +37,18 @@ function getCategoriesFromData(works) {
 }
 
 
-
-// Construction de la galerie
-function createGallery(projects) {
+/**
+ * Function created gallery from works
+ * @param {*} works 
+ * @returns 
+ */
+export function createdGallery(works) {
     const container = document.querySelector(".gallery");
     if (!container) return;
 
     container.innerHTML = ""; // reset de la page
 
-    projects.forEach(value => {
+    works.forEach(value => {
         const figure = document.createElement("figure");
         figure.dataset.id = value.id;
 
@@ -74,8 +65,12 @@ function createGallery(projects) {
     });
 }
 
-// Construction des bouton de filtration
-function createFilterBtn(categories) {
+/**
+ * Function created button filters to categories
+ * @param {*} cats 
+ * @returns 
+ */
+export function createFilterBtn(cats) {
     const containerBtn = document.querySelector(".container-filter");
     if (!containerBtn) return; // sécurité si l'élément n'existe pas
 
@@ -89,7 +84,7 @@ function createFilterBtn(categories) {
     btnAll.dataset.catId = "all";                    // on stocke "all" pour reconnaître ce bouton
     containerBtn.appendChild(btnAll);                // on ajoute le bouton dans le conteneur
 
-    categories.forEach(value => {
+    cats.forEach(value => {
         const btn = document.createElement("button");
         btn.type = "button";                         // type bouton
         btn.textContent = value.name;                // texte du bouton = nom de la catégorie
@@ -99,8 +94,12 @@ function createFilterBtn(categories) {
     })
 }
 
-// Fonction de gestion du filtrage au clic
-function btnFilter(works) {
+/**
+ * Function button filter
+ * @param {*} cats 
+ * @returns 
+ */
+export function btnFilter(cats) {
     const containerBtn = document.querySelector(".container-filter");
     if (!containerBtn) return;
 
@@ -119,20 +118,10 @@ function btnFilter(works) {
 
         // Filtre les projets
         if (catId === "all") {
-            createGallery(works); // Affiche tout
+            createdGallery(cats); // Affiche tout
         } else {
-            const filtered = works.filter(w => w.category && String(w.category.id) === catId);
-            createGallery(filtered); // Affiche seulement ceux de la catégorie
+            const filtered = cats.filter(w => w.category && String(w.category.id) === catId);
+            createdGallery(filtered); // Affiche seulement ceux de la catégorie
         }
     });
 }
-
-
-// Initialisation
-(async function init() {
-    const data = await getWorksData();   // <- on attend la Promise
-    createGallery(data);
-    const categoriesData = getCategoriesFromData(data);
-    createFilterBtn(categoriesData);
-    btnFilter(data);
-})();
