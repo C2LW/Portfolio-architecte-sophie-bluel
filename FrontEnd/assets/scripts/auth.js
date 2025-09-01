@@ -8,7 +8,7 @@ import { postAuthApi } from "./api.js";
  */
 export function postMessageError(message) {
 
-    let spanErreurMessage = document.getElementById("erreurMessage");
+    let spanErreurMessage = document.getElementById("erreur-message");
 
     if (!spanErreurMessage) {
         let zone = document.getElementById("login-form");
@@ -17,7 +17,7 @@ export function postMessageError(message) {
 
         zone.appendChild(spanErreurMessage);
     }
-
+    
     spanErreurMessage.innerText = message;
 };
 
@@ -101,3 +101,14 @@ export function handleLoginSubmit() {
         }
     });
 }
+
+
+/**
+ * 
+ * @returns True or false if token == null
+ */
+function isAuthentificated() {
+    return Boolean(localStorage.getItem("token"));
+}
+
+export const isLoggedIn = isAuthentificated();

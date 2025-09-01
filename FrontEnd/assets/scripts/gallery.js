@@ -1,41 +1,27 @@
-
 /**
- * Function to get categories from works
- * @param {*} works 
+ * 
+ * @param {*} cats 
  * @returns 
  */
-export function getCatsFromData(works) {
-    const categories = []; // Tableau final { id: XX, name: XXXX }
+export function getCatsFromData(cats) {
+    const categories = [];
+    const ids = new Set();
 
-    // Boucle sur tous les projets
-    for (let i = 0; i < works.length; i++) {
-        const data = works[i]; // Projet courant
+    cats.forEach(cat => {
+        if (cat?.id == null) return;
 
-        // Si pas de catégorie ou pas d'id, on ignore
-        if (!data.category || data.category.id == null) continue;
-
-        // Vérifie si la catégorie existe déjà dans notre tableau
-        let alreadyExists = false;
-        for (let j = 0; j < categories.length; j++) {
-            if (categories[j].id === data.category.id) {
-                alreadyExists = true;
-                break;
-            }
-        }
-
-        // Si elle n'existe pas encore, on l'ajoute
-        if (!alreadyExists) {
+        if (!ids.has(cat.id)) {
+            ids.add(cat.id); // ajoute l'id dans le Set
             categories.push({
-                id: data.category.id,
-                name: data.category.name
+                id: cat.id,
+                name: cat.name
             });
         }
-    }
+    })
 
-    console.log(categories); // Debug
-    return categories; // Retourne la liste unique des catégories
+    console.log(categories);
+    return categories;
 }
-
 
 /**
  * Function created gallery from works

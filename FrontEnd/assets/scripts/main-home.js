@@ -1,11 +1,15 @@
-import { getWorksData } from "./api.js";
+import { getWorksData, getCatsData } from "./api.js";
 import { createdGallery, getCatsFromData, createFilterBtn, btnFilter } from "./gallery.js";
+import { enableAdminPage } from "./admin-page.js";
+import { isLoggedIn } from "./auth.js";
 
 // Initialisation
 (async function init() {
-    const data = await getWorksData();   // <- on attend la Promise
-    createdGallery(data);
-    const categoriesData = getCatsFromData(data);
+    const works = await getWorksData();
+    const cats = await getCatsData(); 
+    createdGallery(works);
+    const categoriesData = getCatsFromData(cats);
     createFilterBtn(categoriesData);
-    btnFilter(data);
+    btnFilter(works);
+    enableAdminPage(isLoggedIn);
 })();

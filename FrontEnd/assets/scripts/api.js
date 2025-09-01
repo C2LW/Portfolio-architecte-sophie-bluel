@@ -19,6 +19,23 @@ export async function getWorksData() {
     }
 }
 
+/**
+ * Function get works on API
+ * @returns cats
+ */
+export async function getCatsData() {
+    try {
+        const r = await fetch(`${API_BASE}/categories`);
+        if (!r.ok) throw new Error(`r status: ${r.status}`);
+
+        const cats = await r.json();
+        console.log(cats);
+        return cats;
+
+    } catch (error) {
+        console.error("Erreur API:", error);
+    }
+}
 
 /**
  * Fonction POST pour accès token authentification
