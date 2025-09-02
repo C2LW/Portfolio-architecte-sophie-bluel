@@ -112,3 +112,22 @@ function isAuthentificated() {
 }
 
 export const isLoggedIn = isAuthentificated();
+
+/**
+ * 
+ * @param {*} isLoggedIn 
+ */
+export function handleLogout(isLoggedIn) {
+    const btnLogout = document.querySelector(".login-btn");
+
+    btnLogout.addEventListener("click", async(e) => {
+
+        if(isLoggedIn) {
+            localStorage.removeItem("token");    
+        } else {
+            window.location.href = "login.html";
+        };
+    })
+
+
+}

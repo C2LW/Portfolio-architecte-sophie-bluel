@@ -1,7 +1,7 @@
 import { getWorksData, getCatsData } from "./api.js";
 import { createdGallery, getCatsFromData, createFilterBtn, btnFilter } from "./gallery.js";
 import { enableAdminPage } from "./admin-page.js";
-import { isLoggedIn } from "./auth.js";
+import { handleLogout, isLoggedIn } from "./auth.js";
 
 // Initialisation
 (async function init() {
@@ -12,4 +12,5 @@ import { isLoggedIn } from "./auth.js";
     createFilterBtn(categoriesData);
     btnFilter(works);
     enableAdminPage(isLoggedIn);
+    handleLogout(isLoggedIn);
 })();

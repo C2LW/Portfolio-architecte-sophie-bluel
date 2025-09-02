@@ -1,0 +1,86 @@
+
+.admin-banner {
+  display: none;
+  width: 100%;
+  background-color: #000; 
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-family: inherit;
+  font-size: 14px;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+
+.admin-banner.visible {
+  display: block;
+}
+
+
+.admin-banner .admin-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-banner .admin-button:hover {
+  text-decoration: underline;
+}
+
+
+.projects-header {
+  display: flex;
+  align-items: baseline;      
+  justify-content: center;    
+  gap: 12px;                 
+  margin-bottom: 24px;
+}
+
+
+.projects-header h2 {
+  margin: 0;
+  color: #1F5C4B;            
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+
+.edit-mode {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;                   
+  background: none;
+  border: none;
+  padding: 0;                 
+  font-size: 15px;            
+  line-height: 1;
+  color: #444;               
+  cursor: pointer;
+}
+
+
+.edit-mode svg {
+  width: 16px;
+  height: 16px;
+  display: block;             
+  stroke: currentColor;
+}
+
+
+.edit-mode:hover {
+  color: #1F5C4B;             
+  text-decoration: underline;
+}
+
+.edit-mode:focus-visible {
+  outline: 2px solid #1F5C4B;
+  outline-offset: 2px;
+}
