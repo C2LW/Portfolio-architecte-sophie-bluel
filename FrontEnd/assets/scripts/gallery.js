@@ -5,22 +5,16 @@
  */
 export function getCatsFromData(cats) {
     const categories = [];
-    const ids = new Set();
 
     cats.forEach(cat => {
-        if (cat?.id == null) return;
-
-        if (!ids.has(cat.id)) {
-            ids.add(cat.id); // ajoute l'id dans le Set
-            categories.push({
-                id: cat.id,
-                name: cat.name
-            });
-        }
+        categories.push({
+            id: cat.id,
+            name: cat.name
+        })
     })
 
     console.log(categories);
-    return categories;
+    return new Set(categories);
 }
 
 /**

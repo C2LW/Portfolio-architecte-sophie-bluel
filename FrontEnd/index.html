@@ -62,22 +62,73 @@
 						<path
 							d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
 					</svg>
-					<a href="#" class="open-edit-mode">Modifier</a>
+					<a href="#modal-1" class="js-modal">Modifier</a>
 				</button>
 			</div>
 			<!-- EDIT MODAL PROJECT -->
 
-			<div class="modal-overlay">
-				<div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-					<button class="modal-close" aria-label="Fermer la fenêtre de modification"><svg
-							xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-							stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-							class="lucide lucide-x-icon lucide-x">
-							<path d="M18 6 6 18" />
-							<path d="m6 6 12 12" />
-						</svg></button>
+			<div id="modal-1" class="modal-overlay" aria-hidden="true"  role="dialog" aria-modal="true" aria-labelledby="modal-title" style="display: none;">
+				<div class="modal-wrapper" >
+					<div class="modal-header">
+						<div class="modal-btn">
+							<button type="button" class="btn-back" style="display: none;">&larr;</button>
+							<button type="button" class="js-modal-close">&times;</button>
+						</div>
+
 
 						<h2 id="modal-title" class="modal-title">Galerie photo</h2>
+					</div>
+
+					<div class="modal-container">
+						<div class="modal-gallery">
+							<!-- Integration gallery by js code -->
+
+							<!-- Séparateur -->
+							<hr>
+
+							<!-- Bouton Valider -->
+							<button type="submit" class="btn-primary">Ajouter une photo</button>
+
+						</div>
+
+						<div class="modal-form" style="display: none;">
+							<!-- Zone d’upload -->
+							<div class="upload-zone">
+								<!-- Input fichier -->
+								<label for="image">+ Ajouter photo</label>
+								<input id="image" type="file" name="image" accept=".jpg,.jpeg,.png">
+								<p>jpg, png : 4mo max</p>
+
+								<!-- Prévisualisation (tu pourras l’activer avec du JS) -->
+								<div class="preview" style="display: none;">
+									<img id="preview-img" src="" alt="Aperçu de la photo" style="max-width: 100%;">
+									<button type="button">Retirer</button>
+								</div>
+							</div>
+
+							<!-- Champ titre -->
+							<label for="title">Titre</label>
+							<input id="title" type="text" name="title">
+
+							<!-- Champ catégorie -->
+							<label for="category">Catégorie</label>
+							<select id="category" name="category">
+								<option value="">Sélectionner</option>
+								<option value="1">Objets</option>
+								<option value="2">Appartements</option>
+								<option value="3">Hôtels & restaurants</option>
+							</select>
+
+							<!-- Séparateur -->
+							<hr>
+
+							<!-- Bouton Valider -->
+							<button type="submit">Valider</button>
+
+							</form>
+						</div>
+					</div>
+
 
 				</div>
 			</div>
