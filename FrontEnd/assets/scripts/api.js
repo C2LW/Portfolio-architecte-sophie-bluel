@@ -11,7 +11,7 @@ export async function getWorksData() {
         if (!r.ok) throw new Error(`r status: ${r.status}`);
 
         const works = await r.json();
-        console.log(works);
+        // console.log(works);
         return works;
 
     } catch (error) {
@@ -29,7 +29,7 @@ export async function getCatsData() {
         if (!r.ok) throw new Error(`r status: ${r.status}`);
 
         const cats = await r.json();
-        console.log(cats);
+        // console.log(cats);
         return cats;
 
     } catch (error) {
@@ -114,15 +114,8 @@ export async function postWork(form) {
 
     // Création du FormData
     const formData = new FormData(form);
-/*     formData.append("image", file);
-    formData.append("title", title);
-    formData.append("category", categoryId); */
 
-/*     for(const [k, v] of formData.entries()) {
-        console.log(k, v);
-    }; */
-
-    console.log(formData);
+    // console.log(formData);
 
     try {
         const response = await fetch(url, {

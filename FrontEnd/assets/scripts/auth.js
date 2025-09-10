@@ -91,7 +91,7 @@ export function handleLoginSubmit() {
             if (r && r.token) {
                 localStorage.setItem("token", r.token);
                 console.log("Token saved !");
-                window.location.href = "index.html";
+                window.location.href = "../index.html";
             } else {
                 throw new Error("Identifiants incorrect !")
             }
@@ -121,11 +121,10 @@ export function handleLogout(isLoggedIn) {
     const btnLogout = document.querySelector(".login-btn");
 
     btnLogout.addEventListener("click", async(e) => {
-
         if(isLoggedIn) {
             localStorage.removeItem("token");    
         } else {
-            window.location.href = "login.html";
+            window.location.href = "../index.html";
         };
     })
 

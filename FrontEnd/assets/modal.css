@@ -90,8 +90,6 @@
 
 .modal-gallery .gallery-img {
     width: 100%;
-    aspect-ratio: 1 / 2;
-    /* carrés uniformes */
     object-fit: cover;
     display: block;
 }

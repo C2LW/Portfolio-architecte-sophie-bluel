@@ -18,7 +18,6 @@ const btnAddWork = qSel(".modal-container .modal-form .btn-primary")
 const modalTitle = qSel(".modal-title");
 
 
-
 function validFormAdd(e) {
   const worksTitle = qSel(".field-input");
 
@@ -32,8 +31,8 @@ function validFormAdd(e) {
   }
 }
 
-
 function toAddMode() {
+  console.log("ToAddMode is launch");
   modalWrapper.classList.add("mode-add");
   modalWrapper.classList.remove("mode-gallery");
   btnBack.style.visibility = "visible";
@@ -53,6 +52,7 @@ function toGalleryMode() {
   btnBack.style.visibility = "hidden";
   modaleFooter.style.display = null;
   modalTitle.innerText = "Galerie photo";
+  getBtTrash();
 }
 
 export function addCatsForm(cats) {
@@ -72,49 +72,55 @@ export function addCatsForm(cats) {
 
 }
 
-
 /**
  * Function to opened modal
  * @param {*} e 
  * @returns 
  */
-function openModal(e) {
+export function openModal(e) {
   e.preventDefault();
 
-  // Le lien/bouton qui a déclenché l’événement
-  const trigger = e.currentTarget; // plus fiable que e.target
-  const selector = trigger.getAttribute("href"); // ex: "#modal-1"
+  const trigger = e.currentTarget;
+  const selector = trigger.getAttribute("href");
   const target = document.querySelector(selector);
-  const btnTrash = document.querySelectorAll("figure button");
+
   if (!target) return; // sécurité
 
   // Affiche la modale
   target.classList.add("active");
   modal = target;
 
-  // Ferme en cliquant sur le fond gris (mais pas sur le panneau)
+  // Bouton closed modal "X"
+  const closeBtn = modal.querySelector(".js-modal-close");
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+
+  // Ferme en cliquant sur le fond gris
   modal.addEventListener("click", onOverlayClick);
 
-  // Gestion suppression au click du boutton du prjet à supprimer
-  console.log(btnTrash);
-  btnTrash.forEach(r => {
-    r.addEventListener("click", deleteWorks);
-  });
-
+  // Gestion suppression au click du boutton du projet à supprimer
+  getBtTrash();
 
   // Gestion activation du mode add
+  btnAdd.removeEventListener("click", toAddMode);
   btnAdd.addEventListener("click", toAddMode);
 
   // Gestion activation du mode gallery
+  btnBack.removeEventListener("click", toGalleryMode);
   btnBack.addEventListener("click", toGalleryMode);
-
-  console.log(modal);
-  // Bouton X
-  const closeBtn = modal.querySelector(".js-modal-close");
-  console.log(closeBtn);
-  if (closeBtn) closeBtn.addEventListener("click", closeModal);
 }
 
+
+/**
+ * Function to button remove works
+ */
+export function getBtTrash() {
+  const btnTrash = document.querySelectorAll("figure button");
+
+  // Gestion suppression au click du boutton du prjet à supprimer
+  btnTrash.forEach(r => {
+    r.addEventListener("click", deleteWorks);
+  });
+}
 
 /**
  * Function closed modal
@@ -133,10 +139,14 @@ function closeModal(e) {
   const closeBtn = modal.querySelector(".js-modal-close");
   if (closeBtn) closeBtn.removeEventListener("click", closeModal);
 
-  modal = null;
-  modalIsOpened = 0;
-}
+  // Gestion activation du mode add
+  btnAdd.removeEventListener("click", toAddMode);
 
+  // Gestion activation du mode gallery
+  btnBack.removeEventListener("click", toGalleryMode);
+
+  modal = null;
+}
 
 /**
  * FOnction closed to click on overlay
@@ -149,15 +159,5 @@ function onOverlayClick(e) {
   }
 }
 
-
-/**
- * Function mainModal to call on main-home.js
- */
-export function mainModal() {
-  document.querySelectorAll(".js-modal").forEach((a) => {
-    a.addEventListener("click", openModal);
-    modalIsOpened = 1;
-  });
-}
 
 

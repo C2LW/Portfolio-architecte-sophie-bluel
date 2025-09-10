@@ -1,30 +1,11 @@
 import { modalIsOpened } from "./modal.js";
 
 /**
- * 
- * @param {*} cats 
- * @returns 
- */
-export function getCatsFromData(cats) {
-    const categories = [];
-
-    cats.forEach(cat => {
-        categories.push({
-            id: cat.id,
-            name: cat.name
-        })
-    })
-
-    console.log(categories);
-    return new Set(categories);
-}
-
-/**
  * Function created gallery from works
  * @param {*} works 
  * @returns 
  */
-export function createdGallery(works, target) {
+export function createdGallery(works, target, modal) {
     const container = document.querySelector(target);
     if (!container) return;
 
@@ -39,34 +20,46 @@ export function createdGallery(works, target) {
         img.alt = value.title || "";
         img.classList.add("gallery-img")
 
-        const btnDelete = document.createElement("button");
+        const caption = document.createElement("figcaption");
+        caption.textContent = value.title || "";
 
-        if (modalIsOpened === 1) {
-            btnDelete.type = "button";
-            btnDelete.classList.add("trash-btn");
-            btnDelete.innerHTML = `
+        const btnDelete = document.createElement("button");
+        btnDelete.type = "button";
+        btnDelete.classList.add("trash-btn");
+        btnDelete.innerHTML = `
                 <img src="./assets/icons/trash.png" alt="Boutton poubelle" class="trash-img">
             `;
-        }
 
-        const caption = document.createElement("figcaption");
+        if (modal) {
+            container.appendChild(figure);
+            figure.appendChild(img);
+            figure.appendChild(btnDelete);
 
-        if (modalIsOpened === 0) {
-            caption.textContent = value.title || "";
-        }
-
-        container.appendChild(figure);
-        figure.appendChild(img);
-
-        if (modalIsOpened === 0) {
+        } else {
+            container.appendChild(figure);
+            figure.appendChild(img);
             figure.appendChild(caption);
         }
-
-        if (modalIsOpened === 1) {
-            figure.appendChild(btnDelete);
-        }
-
     });
+}
+
+/**
+ * 
+ * @param {*} cats 
+ * @returns 
+ */
+export function getCatsFromData(cats) {
+    const categories = [];
+
+    cats.forEach(cat => {
+        categories.push({
+            id: cat.id,
+            name: cat.name
+        })
+    })
+
+    // console.log(categories);
+    return new Set(categories);
 }
 
 /**
@@ -125,6 +118,7 @@ export function btnFilter(cats) {
             createdGallery(cats, ".gallery"); // Affiche tout
         } else {
             const filtered = cats.filter(w => w.category && String(w.category.id) === catId);
+            console.log(filtered);
             createdGallery(filtered, ".gallery"); // Affiche seulement ceux de la catégorie
         }
     });
