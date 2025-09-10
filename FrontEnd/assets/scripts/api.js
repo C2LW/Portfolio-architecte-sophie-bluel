@@ -73,3 +73,23 @@ export async function postAuthApi(credentials) {
 
     }
 }
+
+export async function deleteWorksData(id) {
+    const token = localStorage.getItem("token");
+
+    const worksId = id;
+    const request = {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        }
+    };
+
+    try {
+        const r = await fetch(`${API_BASE}/works/${worksId}`, request);
+    } catch (err) {
+        if (err === "401") console.log("Unauthorized to delete works")
+        console.log(err);
+    }
+} 

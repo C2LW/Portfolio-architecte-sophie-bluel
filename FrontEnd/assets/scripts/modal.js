@@ -1,3 +1,4 @@
+import { deleteWorks } from "./delete-works.js";
 import { previewImg } from "./preview-img.js";
 
 
@@ -9,8 +10,6 @@ export function qSel(target) {
 }
 
 const modalWrapper = qSel(".modal-wrapper");
-/* const modeAdd = qSel("mode-add");
-const modeGallery = qSel("mode-gallery"); */
 const btnBack = qSel(".btn-back");
 const modaleFooter = qSel(".modal-footer");
 const btnAdd = qSel(".modal-footer .btn-primary");
@@ -27,9 +26,6 @@ function toAddMode() {
   modalTitle.innerText = "Ajout photo";
 
   document.getElementById("photo").addEventListener("change", previewImg);
-
-
-
 }
 
 function toGalleryMode() {
@@ -70,6 +66,7 @@ function openModal(e) {
   const trigger = e.currentTarget; // plus fiable que e.target
   const selector = trigger.getAttribute("href"); // ex: "#modal-1"
   const target = document.querySelector(selector);
+  const btnTrash = document.querySelectorAll("figure button");
   if (!target) return; // sécurité
 
   // Affiche la modale
@@ -79,13 +76,18 @@ function openModal(e) {
   // Ferme en cliquant sur le fond gris (mais pas sur le panneau)
   modal.addEventListener("click", onOverlayClick);
 
+  // Gestion suppression au click du boutton du prjet à supprimer
+  console.log(btnTrash);
+  btnTrash.forEach(r => {
+    r.addEventListener("click", deleteWorks);
+  });
+
 
   // Gestion activation du mode add
   btnAdd.addEventListener("click", toAddMode);
 
   // Gestion activation du mode gallery
   btnBack.addEventListener("click", toGalleryMode);
-
 
   console.log(modal);
   // Bouton X

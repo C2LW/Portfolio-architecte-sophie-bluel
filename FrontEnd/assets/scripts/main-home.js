@@ -4,21 +4,22 @@ import { enableAdminPage } from "./admin-page.js";
 import { handleLogout, isLoggedIn } from "./auth.js";
 import { addCatsForm, mainModal } from "./modal.js";
 
+    export const worksData = await getWorksData();
+    export const catsData = await getCatsData();
+
 // Initialisation
 (async function init() {
-    const works = await getWorksData();
-    const cats = await getCatsData();
 
-    createdGallery(works, ".gallery");
+    createdGallery(worksData, ".gallery");
 
-    const categoriesData = getCatsFromData(cats);
+    const categoriesData = getCatsFromData(catsData);
     createFilterBtn(categoriesData);
-    btnFilter(works);
+    btnFilter(worksData);
     addCatsForm(categoriesData);
 
     enableAdminPage(isLoggedIn);
     handleLogout(isLoggedIn);
     
     mainModal();
-    createdGallery(works, ".modal-gallery");
+    createdGallery(worksData, ".modal-gallery");
 })();

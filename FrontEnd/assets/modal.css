@@ -166,17 +166,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 170px;
     gap: 5px;
     background: #eaf0f3;
     /* gris bleuté doux de la maquette */
     border-radius: 4px;
-    padding: 22px 18px 16px;
+/*     padding: 22px 18px 16px; */
     text-align: center;
 }
 
 .upload-preview {
     width: 76px;
     height: 76px;
+    margin-top: 22px;
 }
 
 .preview-img {
@@ -206,6 +208,7 @@
 .upload-hint {
     padding-top: 5px;
     color: #444444;
+    margin-bottom: 22px;
 }
 
 .modal-form form {
@@ -245,3 +248,24 @@
     cursor: not-allowed;
     color: #fff;
 }
+
+
+/* Désactivé form après chargement image */
+.btn-secondary.disable {
+    display: none;
+}
+
+.upload-hint.disable {
+    display: none;
+}
+
+.upload-preview.enable {
+    height: 100%;
+    width: auto;
+    margin: auto;
+}
+
+.upload-preview.enable img {
+    height: 100%;
+}
+
