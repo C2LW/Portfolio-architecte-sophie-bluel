@@ -95,18 +95,18 @@
 									</div>
 
 									<!-- input file masqué + label stylé -->
-									<input id="photo" type="file" accept="image/jpeg,image/png" class="input-file">
+									<input name="image" id="photo" type="file" accept="image/jpeg,image/png" class="input-file">
 									<label for="photo" class="btn-secondary">+ Ajouter photo</label>
 
 									<p class="upload-hint">jpg, png : 4mo max</p>
 								</div>
 
 								<label for="title" class="field-label">Titre</label>
-								<input id="title" class="field-input" type="text" autocomplete="off">
+								<input name="title" id="title" class="field-input" type="text" autocomplete="off">
 
 								<label for="category" class="field-label">Catégorie</label>
 								<div class="select-wrap">
-									<select id="category" class="field-select">
+									<select name="category" id="category" class="field-select">
 										<option value="">Sélectionner une catégorie </option>
 										<!-- options injectées via API -->
 									</select>

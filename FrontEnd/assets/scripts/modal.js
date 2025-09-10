@@ -1,5 +1,6 @@
 import { deleteWorks } from "./delete-works.js";
-import { previewImg } from "./preview-img.js";
+import { getNewWorks } from "./new-works.js";
+import { previewImg, validImage } from "./preview-img.js";
 
 
 let modal = null;
@@ -13,9 +14,23 @@ const modalWrapper = qSel(".modal-wrapper");
 const btnBack = qSel(".btn-back");
 const modaleFooter = qSel(".modal-footer");
 const btnAdd = qSel(".modal-footer .btn-primary");
+const btnAddWork = qSel(".modal-container .modal-form .btn-primary")
 const modalTitle = qSel(".modal-title");
 
 
+
+function validFormAdd(e) {
+  const worksTitle = qSel(".field-input");
+
+  console.log(worksTitle.value);
+  console.log(btnAddWork);
+
+  if (worksTitle.value !== "" && validImage) {
+    btnAddWork.removeAttribute("disabled");
+  } else {
+    btnAddWork.setAttribute("disabled", "");
+  }
+}
 
 
 function toAddMode() {
@@ -26,6 +41,10 @@ function toAddMode() {
   modalTitle.innerText = "Ajout photo";
 
   document.getElementById("photo").addEventListener("change", previewImg);
+
+  document.getElementById("add-photo-view").addEventListener("input", validFormAdd);
+  getNewWorks();
+
 }
 
 function toGalleryMode() {
@@ -43,11 +62,11 @@ export function addCatsForm(cats) {
   console.log(formCats);
 
   formCats.innerHTML = ""; // reset de la page
-  
+
   cats.forEach(value => {
     const catsForm = document.createElement("option");
     catsForm.textContent = value.name;                // texte du bouton = nom de la catégorie
-    catsForm.dataset.catId = String(value.id);        // on stocke l'id de la catégorie dans data-cat-id
+    catsForm.value = String(value.id);        // on stocke l'id de la catégorie dans data-cat-id
     formCats.appendChild(catsForm);               // on ajoute le bouton dans le conteneur
   })
 

@@ -4,8 +4,8 @@ import { enableAdminPage } from "./admin-page.js";
 import { handleLogout, isLoggedIn } from "./auth.js";
 import { addCatsForm, mainModal } from "./modal.js";
 
-    export const worksData = await getWorksData();
-    export const catsData = await getCatsData();
+export const worksData = await getWorksData();
+export const catsData = await getCatsData();
 
 // Initialisation
 (async function init() {
@@ -13,6 +13,7 @@ import { addCatsForm, mainModal } from "./modal.js";
     createdGallery(worksData, ".gallery");
 
     const categoriesData = getCatsFromData(catsData);
+
     createFilterBtn(categoriesData);
     btnFilter(worksData);
     addCatsForm(categoriesData);
@@ -22,4 +23,6 @@ import { addCatsForm, mainModal } from "./modal.js";
     
     mainModal();
     createdGallery(worksData, ".modal-gallery");
+
+
 })();

@@ -74,6 +74,10 @@ export async function postAuthApi(credentials) {
     }
 }
 
+/**
+ * Function to delete works
+ * @param {*} id 
+ */
 export async function deleteWorksData(id) {
     const token = localStorage.getItem("token");
 
@@ -92,4 +96,54 @@ export async function deleteWorksData(id) {
         if (err === "401") console.log("Unauthorized to delete works")
         console.log(err);
     }
-} 
+}
+
+/**
+ * Function to post new works on API
+ * @param {*} file 
+ * @param {*} title 
+ * @param {*} categoryId 
+ * @returns 
+ * file, title, categoryId)
+ */
+export async function postWork(form) {
+    const url = "http://localhost:5678/api/works";
+
+    // Récupération du token (ex: stocké en localStorage après login)
+    const token = localStorage.getItem("token");
+
+    // Création du FormData
+    const formData = new FormData(form);
+/*     formData.append("image", file);
+    formData.append("title", title);
+    formData.append("category", categoryId); */
+
+/*     for(const [k, v] of formData.entries()) {
+        console.log(k, v);
+    }; */
+
+    console.log(formData);
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            },
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erreur API: ${response.status}`);
+        }
+
+        const result = await response.json();
+        console.log("Enregistrement réussi :", result);
+        return result;
+
+    } catch (err) {
+        console.error("Erreur lors de l’upload :", err);
+        return null;
+    }
+
+}

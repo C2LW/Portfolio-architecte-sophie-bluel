@@ -1,5 +1,8 @@
 import { qSel } from "./modal.js";
 
+
+export let validImage = false;
+
 /**
  * Function to read image file to charge image preview
  * @param {*} e 
@@ -17,6 +20,8 @@ export function previewImg(e) {
     if(input.files && input.files[0]) {
         const reader = new FileReader();
 
+        validImage = true;
+
         reader.onload = function (e) {
             img.src = e.target.result;
             formLabel.classList.add("disable");
@@ -25,5 +30,7 @@ export function previewImg(e) {
         }
 
         reader.readAsDataURL(input.files[0]);
+    } else {
+        validImage = false;
     }
 }
