@@ -67,11 +67,11 @@
 			</div>
 			<!-- EDIT MODAL PROJECT -->
 
-			<div id="modal-1" class="modal-overlay" aria-hidden="true"  role="dialog" aria-modal="true" aria-labelledby="modal-title" style="display: none;">
-				<div class="modal-wrapper" >
+			<div id="modal-1" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+				<div class="modal-wrapper mode-gallery">
 					<div class="modal-header">
 						<div class="modal-btn">
-							<button type="button" class="btn-back" style="display: none;">&larr;</button>
+							<button type="button" class="btn-back" style="visibility: hidden;">&larr;</button>
 							<button type="button" class="js-modal-close">&times;</button>
 						</div>
 
@@ -84,51 +84,49 @@
 							<!-- Integration gallery by js code -->
 
 							<!-- Séparateur -->
-							<hr>
-
-							<!-- Bouton Valider -->
-							<button type="submit" class="btn-primary">Ajouter une photo</button>
-
 						</div>
 
-						<div class="modal-form" style="display: none;">
-							<!-- Zone d’upload -->
-							<div class="upload-zone">
-								<!-- Input fichier -->
-								<label for="image">+ Ajouter photo</label>
-								<input id="image" type="file" name="image" accept=".jpg,.jpeg,.png">
-								<p>jpg, png : 4mo max</p>
+						<div class="modal-form">
+							<!-- Vue Ajout photo -->
+							<form id="add-photo-view" class="modal-form">
+								<div class="upload-zone">
+									<div class="upload-preview" aria-hidden="true">
+										<img src="/FrontEnd/assets/icons/img.png" alt="Image prévisualisation" class="preview-img">
+									</div>
 
-								<!-- Prévisualisation (tu pourras l’activer avec du JS) -->
-								<div class="preview" style="display: none;">
-									<img id="preview-img" src="" alt="Aperçu de la photo" style="max-width: 100%;">
-									<button type="button">Retirer</button>
+									<!-- input file masqué + label stylé -->
+									<input id="photo" type="file" accept="image/jpeg,image/png" class="input-file">
+									<label for="photo" class="btn-secondary">+ Ajouter photo</label>
+
+									<p class="upload-hint">jpg, png : 4mo max</p>
 								</div>
-							</div>
 
-							<!-- Champ titre -->
-							<label for="title">Titre</label>
-							<input id="title" type="text" name="title">
+								<label for="title" class="field-label">Titre</label>
+								<input id="title" class="field-input" type="text" autocomplete="off">
 
-							<!-- Champ catégorie -->
-							<label for="category">Catégorie</label>
-							<select id="category" name="category">
-								<option value="">Sélectionner</option>
-								<option value="1">Objets</option>
-								<option value="2">Appartements</option>
-								<option value="3">Hôtels & restaurants</option>
-							</select>
+								<label for="category" class="field-label">Catégorie</label>
+								<div class="select-wrap">
+									<select id="category" class="field-select">
+										<option value="">Sélectionner une catégorie </option>
+										<!-- options injectées via API -->
+									</select>
+									<span class="select-caret"></span>
+								</div>
 
-							<!-- Séparateur -->
-							<hr>
+								<hr class="modal-footer-separation">
 
-							<!-- Bouton Valider -->
-							<button type="submit">Valider</button>
-
+								<button type="submit" class="btn-primary" disabled>Valider</button>
 							</form>
 						</div>
 					</div>
 
+					<div class="modal-footer">
+
+						<hr class="modal-footer-separation">
+
+						<!-- Bouton Valider -->
+						<button type="submit" class="btn-primary mode-gallery">Ajouter une photo</button>
+					</div>
 
 				</div>
 			</div>

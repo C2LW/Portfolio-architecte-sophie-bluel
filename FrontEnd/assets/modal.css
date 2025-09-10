@@ -1,77 +1,247 @@
-/* Fond gris derrière la modale */
+/* ==== Overlay ==== */
 .modal-overlay {
-  position: fixed;      
-  top: 0;              
-  left: 0;              
-  width: 100%;          
-  height: 100%;         
-  background: rgba(0, 0, 0, 0.5); 
-  display: flex;        
-  justify-content: center; 
-  align-items: center;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+    display: none;
+    /* masquée par défaut */
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
 }
 
-/* La boîte de la modale */
+.modal-overlay.active {
+    display: flex;
+    /* affichée quand on ajoute .active en JS */
+}
+
+/* ==== Modal Wrapper ==== */
 .modal-wrapper {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 630px;
-  height: 680px;
-  max-width: calc(100vw - 20px);
-  max-height: calc(100vh - 20px);
-  overflow: auto;
-}
-
-.modal-container {
-    margin: auto;
-    height: calc(100% - 120px);
+    width: 630px;
+    height: 688px;
+    background: #fff;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
-.modal-gallery {
-    height: 75%;
+/* ==== Header ==== */
+.modal-header {
+    padding: 16px 20px 20px;
+    position: relative;
 }
 
 .modal-btn {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
-.modal-btn button {
+.btn-back {
     border: none;
-    background-color: #fff;
-    font-size: 2em;
-    margin: 15px;
+    background: transparent;
+    font-size: 20px;
     cursor: pointer;
+    visibility: hidden;
+    /* activé via JS si besoin */
+}
+
+.js-modal-close {
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
 }
 
 .modal-title {
+    margin: 12px 0 0;
     color: black;
     font-size: 1.8em;
-	font-family: 'Work Sans' ;
+    font-family: 'Work Sans';
+    text-align: center;
 }
 
+/* ==== Container ==== */
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 100px 20px;
+    overflow: hidden;
+}
+
+/* ==== Galerie ==== */
+.modal-gallery {
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 colonnes */
+    grid-row: 102px;
+    gap: 30px 10px;
+}
+
+.modal-gallery figure {
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    max-height: 102px;
+}
+
+.modal-gallery .gallery-img {
+    width: 100%;
+    aspect-ratio: 1 / 2;
+    /* carrés uniformes */
+    object-fit: cover;
+    display: block;
+}
+
+/* Icône poubelle */
+.trash-btn {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    border: none;
+    border-radius: 5px;
+    background: #000;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+
+.trash-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ==== Footer ==== */
+.modal-footer {
+    padding-top: 20px;
+    height: 20%;
+}
+
+.modal-footer-separation {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 30px;
+}
 
 .btn-primary {
-    font-family: 'Syne';
-    font-weight: 700;
-    color: white;
-    background-color: #1D6154;
+    display: block;
     margin: auto;
-    margin-top: 20px;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 24px;
+    background: #2F6E5A;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
     width: 237px;
+}
+
+/* ----- Toggle des vues ----- */
+/* Masquer formulaire ajout */
+.modal-wrapper.mode-gallery .modal-form {
+    display: none;
+}
+
+/* Masquer formulaire ajout */
+.modal-wrapper.mode-add .modal-gallery {
+    display: none;
+}
+
+/* ----- Mise en forme Form ----- */
+.modal-form {
+    width: 100%;
+}
+
+.upload-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background: #eaf0f3;
+    /* gris bleuté doux de la maquette */
+    border-radius: 4px;
+    padding: 22px 18px 16px;
     text-align: center;
-    border-radius: 60px;
-    height: 36px;
+}
+
+.upload-preview {
+    width: 76px;
+    height: 76px;
+}
+
+.preview-img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.input-file {
+    display: none;
+}
+
+.btn-secondary {
+    display: block;
+    margin: auto;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 24px;
+    background: #CBD6DC;
+    /* vert comme ton bouton */
+    color: #306685;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+}
+
+.upload-hint {
+    padding-top: 5px;
+    color: #444444;
+}
+
+.modal-form form {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form input {
+    height: 50px;
     font-size: 1.2em;
     border: none;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-    display: block;
-    align-items: center;
-    justify-content: center;
 }
 
+.modal-form select {
+    height: 50px;
+    width: 100%;
+    font-size: 1.2em;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
 
+.field-label {
+    margin: 1.5em 0 1em 0;
+}
+
+.modal-form .modal-footer-separation {
+    width: 100%;
+    margin-top: 3em;
+    margin: 3em 0 3em 0;
+}
+
+/* Bouton valider désactivé/activé */
+.btn-primary[disabled] {
+    background: #A7A7A7;
+    cursor: not-allowed;
+    color: #fff;
+}

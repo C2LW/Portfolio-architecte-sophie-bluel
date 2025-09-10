@@ -1,3 +1,5 @@
+import { modalIsOpened } from "./modal.js";
+
 /**
  * 
  * @param {*} cats 
@@ -22,8 +24,8 @@ export function getCatsFromData(cats) {
  * @param {*} works 
  * @returns 
  */
-export function createdGallery(works) {
-    const container = document.querySelector(".gallery");
+export function createdGallery(works, target) {
+    const container = document.querySelector(target);
     if (!container) return;
 
     container.innerHTML = ""; // reset de la page
@@ -35,13 +37,35 @@ export function createdGallery(works) {
         const img = document.createElement("img");
         img.src = value.imageUrl;
         img.alt = value.title || "";
+        img.classList.add("gallery-img")
+
+        const btnDelete = document.createElement("button");
+
+        if (modalIsOpened === 1) {
+            btnDelete.type = "button";
+            btnDelete.classList.add("trash-btn");
+            btnDelete.innerHTML = `
+                <img src="./assets/icons/trash.png" alt="Boutton poubelle" class="trash-img">
+            `;
+        }
 
         const caption = document.createElement("figcaption");
-        caption.textContent = value.title || "";
+
+        if (modalIsOpened === 0) {
+            caption.textContent = value.title || "";
+        }
 
         container.appendChild(figure);
         figure.appendChild(img);
-        figure.appendChild(caption);
+
+        if (modalIsOpened === 0) {
+            figure.appendChild(caption);
+        }
+
+        if (modalIsOpened === 1) {
+            figure.appendChild(btnDelete);
+        }
+
     });
 }
 
@@ -98,10 +122,10 @@ export function btnFilter(cats) {
 
         // Filtre les projets
         if (catId === "all") {
-            createdGallery(cats); // Affiche tout
+            createdGallery(cats, ".gallery"); // Affiche tout
         } else {
             const filtered = cats.filter(w => w.category && String(w.category.id) === catId);
-            createdGallery(filtered); // Affiche seulement ceux de la catégorie
+            createdGallery(filtered, ".gallery"); // Affiche seulement ceux de la catégorie
         }
     });
 }
