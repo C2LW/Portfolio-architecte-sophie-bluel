@@ -45,3 +45,10 @@
 	text-align: center;
 	border-radius: 60px;
 }
+
+#erreur-message {
+	display: block;
+	padding: 15px;
+	color: red;
+	font-size: 1.1em;
+}

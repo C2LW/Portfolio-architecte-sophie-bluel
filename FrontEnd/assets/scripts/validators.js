@@ -28,3 +28,41 @@ export function validerPassword(password) {
         throw new Error("Mot de passe invalide (6+ caractères, 1 lettre et 1 chiffre).");
     }
 };
+
+
+
+
+/**
+ * Function to valid file type
+ * @param {File} file 
+ * @returns BOOL
+ */
+export function validFileType(file) {
+    let fileTypes = ["image/jpeg", "image/jpg", "image/png"];
+    console.log(file.type);
+
+  for (var i = 0; i < fileTypes.length; i++) {
+    if (file.type === fileTypes[i]) {
+      console.log("Type de fichier valid")  
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * 
+ * @param {file} file 
+ * @returns BOOL
+ */
+export function validFileSize(file) {
+    const fileSize = 4000000;
+    console.log(file.size);
+    
+    if(file.size < fileSize) {
+        console.log("Size inférieure à 4mo")
+        return true;
+    } else {
+        return false;
+    }
+}

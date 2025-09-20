@@ -1,4 +1,5 @@
 import { qSel } from "./modal.js";
+import { validFileSize, validFileType } from "./validators.js";
 
 
 export let validImage = false;
@@ -15,9 +16,11 @@ export function previewImg(e) {
     const formHint = qSel(".upload-hint");
     const formPreview = qSel(".upload-preview");
 
-    console.log(input.files);
+    let inputFile = input.files[0];
 
-    if(input.files && input.files[0]) {
+    console.log(inputFile);
+
+    if(validFileType(inputFile) && validFileSize(inputFile)) {
         const reader = new FileReader();
 
         validImage = true;
@@ -32,5 +35,10 @@ export function previewImg(e) {
         reader.readAsDataURL(input.files[0]);
     } else {
         validImage = false;
+        alert("Le type ou la taille du fichier n'est pas correct, veuillez réssayer.")
     }
 }
+
+
+4000000
+1152922

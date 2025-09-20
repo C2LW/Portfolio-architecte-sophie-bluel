@@ -14,15 +14,15 @@ const modalWrapper = qSel(".modal-wrapper");
 const btnBack = qSel(".btn-back");
 const modaleFooter = qSel(".modal-footer");
 const btnAdd = qSel(".modal-footer .btn-primary");
-const btnAddWork = qSel(".modal-container .modal-form .btn-primary")
+export const btnAddWork = qSel(".modal-container .modal-form .btn-primary")
 const modalTitle = qSel(".modal-title");
 
 
 function validFormAdd(e) {
   const worksTitle = qSel(".field-input");
 
-  console.log(worksTitle.value);
-  console.log(btnAddWork);
+  // console.log(worksTitle.value);
+  // console.log(btnAddWork);
 
   if (worksTitle.value !== "" && validImage) {
     btnAddWork.removeAttribute("disabled");
