@@ -76,8 +76,6 @@
     overflow-y: auto;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    /* 5 colonnes */
-    grid-row: 102px;
     gap: 30px 10px;
 }
 

@@ -17,27 +17,27 @@
 <body>
 
 	<header>
-			<div class="admin-banner" style="display: none;">
-				<button class="admin-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-						viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-						stroke-linejoin="round" class="lucide lucide-square-pen-icon lucide-square-pen">
-						<path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-						<path
-							d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
-					</svg> Mode Edition </button>
-			</div>
-			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-			<nav>
-				<ul>
-					<li><a href="#" class="menu-btn"><strong>projets</strong></a></li>
-					<li> <a href="#" class="menu-btn">contact</a></li>
-					<li><a href="pages/login.html" class="menu-btn login-btn">login</a></li>
-					<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-				</ul>
-			</nav>
+		<div class="admin-banner" style="display: none;">
+			<button class="admin-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+					viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+					stroke-linejoin="round" class="lucide lucide-square-pen-icon lucide-square-pen">
+					<path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+					<path
+						d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
+				</svg> Mode Edition </button>
+		</div>
+		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+		<nav>
+			<ul>
+				<li><a href="#" class="menu-btn"><strong>projets</strong></a></li>
+				<li> <a href="#" class="menu-btn">contact</a></li>
+				<li><a href="pages/login.html" class="menu-btn login-btn">login</a></li>
+				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+			</ul>
+		</nav>
 	</header>
 	<main>
-		<section id="introduction">
+		<div id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
 			</figure>
@@ -51,19 +51,20 @@
 				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
 					décorateur(trice)</p>
 			</article>
-		</section>
+		</div>
 		<section id="portfolio">
 			<div class="projects-header">
 				<h2>Mes Projets</h2>
-				<button class="edit-mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-						viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-						stroke-linejoin="round" class="lucide lucide-square-pen-icon lucide-square-pen">
+				<a href="#modal-1" class="js-modal edit-mode">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+						stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+						class="lucide lucide-square-pen-icon lucide-square-pen">
 						<path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
 						<path
 							d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
 					</svg>
-					<a href="#modal-1" class="js-modal">Modifier</a>
-				</button>
+					Modifier
+				</a>
 			</div>
 			<!-- EDIT MODAL PROJECT -->
 
@@ -165,7 +166,8 @@
 			</ul>
 		</nav>
 	</footer>
+	<script type="module" src="./assets/scripts/main-home.js"></script>
 </body>
-<script type="module" src="./assets/scripts/main-home.js"></script>
+
 
 </html>
