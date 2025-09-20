@@ -1,109 +1,171 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Sophie Bluel - Architecte d'intérieur</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+		rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-</head>
-<body>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-	<nav>
-		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<li>login</li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
-</header>
-<main>
-	<section id="introduction">
-		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
-		</figure>
-		<article>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-		</article>
-	</section>
-	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<div class="gallery">
-			<figure>
-				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
-				<figcaption>Abajour Tahina</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
-				<figcaption>Appartement Paris V</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
-				<figcaption>Restaurant Sushisen - Londres</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port Louis">
-				<figcaption>Villa “La Balisiere” - Port Louis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
-				<figcaption>Structures Thermopolis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
-				<figcaption>Appartement Paris X</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis">
-				<figcaption>Pavillon “Le coteau” - Cassis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba">
-				<figcaption>Villa Ferneze - Isola d’Elba</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII">
-				<figcaption>Appartement Paris XVIII</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris">
-				<figcaption>Bar “Lullaby” - Paris</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
-				<figcaption>Hotel First Arte - New Delhi</figcaption>
-			</figure>
-		</div>
-	</section>
-	<section id="contact">
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
-		</form>
-	</section>
-</main>
 
-<footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
-</footer>
+</head>
+
+<body>
+
+	<header>
+			<div class="admin-banner" style="display: none;">
+				<button class="admin-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+						stroke-linejoin="round" class="lucide lucide-square-pen-icon lucide-square-pen">
+						<path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+						<path
+							d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
+					</svg> Mode Edition </button>
+			</div>
+			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+			<nav>
+				<ul>
+					<li><a href="#" class="menu-btn"><strong>projets</strong></a></li>
+					<li> <a href="#" class="menu-btn">contact</a></li>
+					<li><a href="pages/login.html" class="menu-btn login-btn">login</a></li>
+					<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+				</ul>
+			</nav>
+	</header>
+	<main>
+		<section id="introduction">
+			<figure>
+				<img src="./assets/images/sophie-bluel.png" alt="">
+			</figure>
+			<article>
+				<h2>Designer d'espace</h2>
+				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
+					finale du chantier.</p>
+				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les
+					couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du
+					chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
+					décorateur(trice)</p>
+			</article>
+		</section>
+		<section id="portfolio">
+			<div class="projects-header">
+				<h2>Mes Projets</h2>
+				<button class="edit-mode"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+						viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+						stroke-linejoin="round" class="lucide lucide-square-pen-icon lucide-square-pen">
+						<path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+						<path
+							d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
+					</svg>
+					<a href="#modal-1" class="js-modal">Modifier</a>
+				</button>
+			</div>
+			<!-- EDIT MODAL PROJECT -->
+
+			<div id="modal-1" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+				<div class="modal-wrapper mode-gallery">
+					<div class="modal-header">
+						<div class="modal-btn">
+							<button type="button" class="btn-back" style="visibility: hidden;">&larr;</button>
+							<button type="button" class="js-modal-close">&times;</button>
+						</div>
+
+
+						<h2 id="modal-title" class="modal-title">Galerie photo</h2>
+					</div>
+
+					<div class="modal-container">
+						<div class="modal-gallery">
+							<!-- Integration gallery by js code -->
+
+							<!-- Séparateur -->
+						</div>
+
+						<div class="modal-form">
+							<!-- Vue Ajout photo -->
+							<form id="add-photo-view" class="modal-form">
+								<div class="upload-zone">
+									<div class="upload-preview" aria-hidden="true">
+										<img src="/FrontEnd/assets/icons/img.png" alt="Image prévisualisation"
+											class="preview-img">
+									</div>
+
+									<!-- input file masqué + label stylé -->
+									<input name="image" id="photo" type="file" accept="image/jpeg,image/png"
+										class="input-file">
+									<label for="photo" class="btn-secondary">+ Ajouter photo</label>
+
+									<p class="upload-hint">jpg, png : 4mo max</p>
+								</div>
+
+								<label for="title" class="field-label">Titre</label>
+								<input name="title" id="title" class="field-input" type="text" autocomplete="off">
+
+								<label for="category" class="field-label">Catégorie</label>
+								<div class="select-wrap">
+									<select name="category" id="category" class="field-select">
+										<option value="">Sélectionner une catégorie </option>
+										<!-- options injectées via API -->
+									</select>
+									<span class="select-caret"></span>
+								</div>
+
+								<hr class="modal-footer-separation">
+
+								<button type="submit" class="btn-primary" disabled>Valider</button>
+							</form>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+
+						<hr class="modal-footer-separation">
+
+						<!-- Bouton Valider -->
+						<button type="submit" class="btn-primary mode-gallery">Ajouter une photo</button>
+					</div>
+
+				</div>
+			</div>
+
+
+
+			<div class="container-filter">
+				<!-- Integration btn filter project -->
+			</div>
+			<div class="gallery">
+				<!-- Integration gallery by js code -->
+			</div>
+		</section>
+
+		<section id="contact">
+			<h2>Contact</h2>
+			<p>Vous avez un projet ? Discutons-en !</p>
+			<form action="#" method="post">
+				<label for="name">Nom</label>
+				<input type="text" name="name" id="name">
+				<label for="email">Email</label>
+				<input type="email" name="email" id="email">
+				<label for="message">Message</label>
+				<textarea name="message" id="message" cols="30" rows="10"></textarea>
+				<input type="submit" value="Envoyer">
+			</form>
+		</section>
+	</main>
+
+	<footer>
+		<nav>
+			<ul>
+				<li>Mentions Légales</li>
+			</ul>
+		</nav>
+	</footer>
 </body>
+<script type="module" src="./assets/scripts/main-home.js"></script>
+
 </html>
