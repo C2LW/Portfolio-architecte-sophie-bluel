@@ -89,7 +89,7 @@ export function handleLoginSubmit() {
             const r = await postAuthApi(credentials);
 
             if (r && r.token) {
-                localStorage.setItem("token", r.token);
+                sessionStorage.setItem("token", r.token);
                 console.log("Token saved !");
                 window.location.href = "../index.html";
             } else {
@@ -108,7 +108,7 @@ export function handleLoginSubmit() {
  * @returns True or false if token == null
  */
 function isAuthentificated() {
-    return Boolean(localStorage.getItem("token"));
+    return Boolean(sessionStorage.getItem("token"));
 }
 
 export const isLoggedIn = isAuthentificated();
@@ -122,7 +122,7 @@ export function handleLogout(isLoggedIn) {
 
     btnLogout.addEventListener("click", async(e) => {
         if(isLoggedIn) {
-            localStorage.removeItem("token");    
+            sessionStorage.removeItem("token");    
         } else {
             window.location.href = "../index.html";
         };
